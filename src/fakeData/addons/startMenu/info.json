@@ -1,0 +1,15 @@
+{
+  "name": "startMenu",
+  "templates": {
+    "button": ["button2.html"],
+    "content": ["content2.html"]
+  },
+  "modules": ["StartMenu"],
+  "sass": [
+    "_variables.scss",
+    "main.scss"
+  ],
+  "hooks": {
+    "addons-applications-icon": "icon.html"
+  }
+}

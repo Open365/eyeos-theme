@@ -1,0 +1,17 @@
+<html>
+<head>
+	<script src="bower_components/sass.js/dist/sass.worker.js"></script>
+	<script src="src/lib/BrowserSassCompiler.js"></script>
+	<script>
+
+	var browserSassCompiler = new BrowserSassCompiler();
+	var scss = '$primary-color: #333; $primary-color: #222; body {color: $primary-color;}';
+	browserSassCompiler.compile(scss, function(err, css) {
+		console.log("CSSSS", css);
+	});
+	</script>
+</head>
+<body>
+	Look at console
+</body>
+</html>

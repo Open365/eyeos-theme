@@ -1,0 +1,19 @@
+{
+  "name": "desktop",
+  "defaultAddons": false,
+  "sass": [
+    "base/_variables.scss",
+    "addons/_people-groups-variables.scss",
+    "base/animations",
+    "base/fonts",
+    "base/mixins",
+    "base/placeholders",
+    "addons/iconboard",
+    "addons/people-groups",
+    "addons/topbar",
+    "components/loading",
+    "components/modal",
+    "components/eyeVentus",
+    "layout/desktop.scss"
+  ]
+}

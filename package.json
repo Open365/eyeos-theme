@@ -1,0 +1,26 @@
+{
+  "name": "eyeos-theme",
+  "version": "0.0.36",
+  "description": "Themming lib and service",
+  "main": "src/index-node.js",
+  "author": "eyeOS",
+  "homepage": "http://www.eyeos.com/",
+  "dependencies": {
+    "requirejs": "2.1.15",
+    "requirejs-text": "2.0.12",
+    "amdefine": "0.1.0",
+    "node-sass": "3.4.2"
+  },
+  "devDependencies": {
+    "eyeos-builder-utils": "*",
+    "eyeos-gruntfile": "*",
+    "chai": "1.8.0",
+    "sinon": "1.7.3",
+    "mocha": "1.20.1",
+    "grunt": "0.4.5",
+    "grunt-init": "0.2.1",
+    "grunt-shell": "0.7.0",
+    "grunt-mocha-test": "0.11.0"
+  },
+  "license": "AGPL-3.0"
+}

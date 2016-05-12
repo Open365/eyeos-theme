@@ -1,0 +1,15 @@
+{
+  "name": "applications",
+  "templates": {
+    "button": ["button.html"],
+    "content": ["content.html"]
+  },
+  "modules": ["ApplicationsModule"],
+  "sass": [
+    "_variables.scss",
+    "main.scss"
+  ],
+  "hooks": {
+    "addons-applications-icon": "icon.html"
+  }
+}

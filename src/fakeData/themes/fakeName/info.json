@@ -1,0 +1,17 @@
+{
+  "name": "fakeName",
+  "defaultAddons": true,
+  "sass": [
+    "_variables.scss",
+    "main.scss"
+  ],
+  "addons": {
+    "applications": "full",
+    "startMenu": "full"
+  },
+  "hooks": {
+    "themes-default-main": "main.html",
+    "themes-default-content": "content.html",
+    "themes-default-topbar": "topbar.html"
+  }
+}
