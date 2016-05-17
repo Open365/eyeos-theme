@@ -23,7 +23,7 @@ var requirejs = require('requirejs');
 
 var SassFetcher = requirejs('SassFetcher');
 
-suite('SassFetcher', function(){
+suite.skip('SassFetcher', function(){
 	var sut;
 
 	var sassFiles = {};
