@@ -1,6 +1,6 @@
 {
   "name": "eyeos-theme",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "description": "Themming lib and service",
   "main": "src/index-node.js",
   "author": "eyeOS",
@@ -12,7 +12,6 @@
     "node-sass": "3.4.2"
   },
   "devDependencies": {
-    "eyeos-builder-utils": "*",
     "eyeos-gruntfile": "*",
     "chai": "1.8.0",
     "sinon": "1.7.3",

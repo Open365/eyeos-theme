@@ -5,3 +5,4 @@ set -x
 
 npm install
 node src/test/index.js
+grunt commit-stage
