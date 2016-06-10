@@ -1,6 +1,6 @@
 {
   "name": "eyeos-theme",
-  "version": "0.0.38",
+  "version": "0.0.39",
   "description": "Themming lib and service",
   "main": "src/index-node.js",
   "author": "eyeOS",
