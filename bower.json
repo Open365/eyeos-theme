@@ -1,6 +1,6 @@
 {
   "name": "eyeos-theme",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "dependencies": {
     "sass.js": "0.6.3"
   },
