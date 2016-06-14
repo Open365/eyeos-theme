@@ -3,3 +3,4 @@ node_modules/
 commit.properties
 .idea/
 /build/
+build-browser/
