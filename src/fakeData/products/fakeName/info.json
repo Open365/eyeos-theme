@@ -1,6 +1,7 @@
 {
   "name": "fakeName",
   "defaultAddons": true,
+  "defaultTheme": "light",
   "sass": [
     "_variables.scss",
     "main.scss"
@@ -10,8 +11,8 @@
     "startMenu": "full"
   },
   "hooks": {
-    "themes-default-main": "main.html",
-    "themes-default-content": "content.html",
-    "themes-default-topbar": "topbar.html"
+    "products-default-main": "main.html",
+    "products-default-content": "content.html",
+    "products-default-topbar": "topbar.html"
   }
 }

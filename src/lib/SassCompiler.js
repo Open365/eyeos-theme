@@ -17,7 +17,7 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(['./Theme', 'node-sass', 'fs'], function (Theme, sass, fs) {
+define(['./Product', 'node-sass', 'fs'], function (Product, sass, fs) {
 	'use strict';
 
 	function SassCompiler() {

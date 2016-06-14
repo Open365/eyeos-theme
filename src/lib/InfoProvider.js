@@ -17,11 +17,11 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(['./ThemeInfoProvider', './AddonsInfoProvider'], function (ThemeInfoProvider, AddonsInfoProvider) {
+define(['./ProductInfoProvider', './AddonsInfoProvider'], function (ProductInfoProvider, AddonsInfoProvider) {
 	'use strict';
 
-	function InfoProvider(settings, themeInfoProvider, addonsInfoProvider) {
-		this.themeInfoProvider = themeInfoProvider || new ThemeInfoProvider(settings);
+	function InfoProvider(settings, productInfoProvider, addonsInfoProvider) {
+		this.productInfoProvider = productInfoProvider || new ProductInfoProvider(settings);
 		this.addonsInfoProvider = addonsInfoProvider || new AddonsInfoProvider(settings);
 	}
 
@@ -31,14 +31,14 @@ define(['./ThemeInfoProvider', './AddonsInfoProvider'], function (ThemeInfoProvi
 	};
 
 	InfoProvider.prototype.start = function () {
-		this.themeInfoProvider.setInformation(this.name, this.processThemeInfo.bind(this));
+		this.productInfoProvider.setInformation(this.name, this.processProductInfo.bind(this));
 
-		this.themeInfoProvider.start();
+		this.productInfoProvider.start();
 
 	};
 
-	InfoProvider.prototype.processThemeInfo = function (err, info) {
-		this.themeInfo = info;
+	InfoProvider.prototype.processProductInfo = function (err, info) {
+		this.productInfo = info;
 		var addons = {
 			defaultAddons: false
 		};
@@ -70,7 +70,7 @@ define(['./ThemeInfoProvider', './AddonsInfoProvider'], function (ThemeInfoProvi
 
 	InfoProvider.prototype.__gotAllInfo = function (err, info) {
 		this.callback(err, {
-			themes: this.themeInfo,
+			products: this.productInfo,
 			addons: info
 		});
 	};

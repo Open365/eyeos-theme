@@ -29,46 +29,46 @@ requirejs.config({
 	}
 });
 
-var Theme = requirejs('../lib/Theme');
-var ThemeSassExtractor = requirejs('../lib/ThemeSassExtractor');
-var ThemeHooksExtractor = requirejs('../lib/ThemeHooksExtractor');
-var ThemeModulesExtractor = requirejs('../lib/ThemeModulesExtractor');
+var Product = requirejs('../lib/Product');
+var ProductSassExtractor = requirejs('../lib/ProductSassExtractor');
+var ProductHooksExtractor = requirejs('../lib/ProductHooksExtractor');
+var ProductModulesExtractor = requirejs('../lib/ProductModulesExtractor');
 var AddonTemplatesExtractor = requirejs('../lib/AddonTemplatesExtractor');
 
-suite('Theme', function(){
+suite('Product', function(){
 	var sut;
 
-	var themeInfo = {};
-	var themeSassExtractor, themeSassExtractorStub;
-	var themeHooksExtractor, themeHooksExtractorStub;
-	var themeModulesExtractor, themeModulesExtractorStub;
+	var productInfo = {};
+	var productSassExtractor, productSassExtractorStub;
+	var productHooksExtractor, productHooksExtractorStub;
+	var productModulesExtractor, productModulesExtractorStub;
 	var addonTemplatesExtractor, addonTemplatesExtractorStub;
 
 	setup(function(){
-		themeSassExtractor = new ThemeSassExtractor();
-		themeSassExtractorStub = sinon.stub(themeSassExtractor);
-		themeHooksExtractor = new ThemeHooksExtractor();
-		themeHooksExtractorStub = sinon.stub(themeHooksExtractor);
-		themeModulesExtractor = new ThemeModulesExtractor();
-		themeModulesExtractorStub = sinon.stub(themeModulesExtractor);
+		productSassExtractor = new ProductSassExtractor();
+		productSassExtractorStub = sinon.stub(productSassExtractor);
+		productHooksExtractor = new ProductHooksExtractor();
+		productHooksExtractorStub = sinon.stub(productHooksExtractor);
+		productModulesExtractor = new ProductModulesExtractor();
+		productModulesExtractorStub = sinon.stub(productModulesExtractor);
 		addonTemplatesExtractor = new AddonTemplatesExtractor();
 		addonTemplatesExtractorStub = sinon.stub(addonTemplatesExtractor);
 
-		sut = new Theme(themeInfo, themeSassExtractor, themeHooksExtractor, themeModulesExtractor, addonTemplatesExtractor);
+		sut = new Product(productInfo, productSassExtractor, productHooksExtractor, productModulesExtractor, addonTemplatesExtractor);
 	});
 
 	suite('#ExtractorMethods', function(){
 		test('Should forward the call to this.sassExtractor.getSass', function(){
 			sut.getSass();
-			sinon.assert.calledWithExactly(themeSassExtractorStub.getSass);
+			sinon.assert.calledWithExactly(productSassExtractorStub.getSass);
 		});
 		test('Should forward the call to this.hookExtractor.getHooks', function () {
 			sut.getHooks();
-			sinon.assert.calledWithExactly(themeHooksExtractorStub.getHooks);
+			sinon.assert.calledWithExactly(productHooksExtractorStub.getHooks);
 		});
 		test('Should forward the call to this.modulesExtractor.getModules', function () {
 			sut.getModules();
-			sinon.assert.calledWithExactly(themeModulesExtractorStub.getModules);
+			sinon.assert.calledWithExactly(productModulesExtractorStub.getModules);
 		});
 		test('Should forward the call to this.templatesExtractor.getAddonTemplates', function () {
 			sut.getAddonTemplates();

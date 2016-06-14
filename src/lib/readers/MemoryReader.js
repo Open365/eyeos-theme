@@ -23,7 +23,7 @@ define([], function () {
 		this.infos = infos;
 	};
 
-	MemoryReader.prototype.getThemeInfo = function (name, callback) {
+	MemoryReader.prototype.getProductInfo = function (name, callback) {
 		callback(false, this.infos[name]);
 	};
 

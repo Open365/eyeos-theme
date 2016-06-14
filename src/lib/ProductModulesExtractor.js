@@ -17,20 +17,31 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(['./Theme', './InfoProvider'], function (Theme, InfoProvider) {
-	'use strict';
+define([], function () {
 
-	function ThemeFactory(settings, infoProvider) {
-		this.infoProvider = infoProvider || new InfoProvider(settings);
-	}
-
-	ThemeFactory.prototype.getTheme = function (name, callback) {
-		this.infoProvider.setInformation(name, function (err, info) {
-			callback(0, new Theme(info));
-		});
-
-		this.infoProvider.start();
+	var ProductModulesExtractor = function (productInfo) {
+		this.productInfo = productInfo;
 	};
 
-	return ThemeFactory;
+	ProductModulesExtractor.prototype.getModules = function () {
+		var modules = {};
+
+		var iterateModules = function (item) {
+			if (!item.modules) {
+				return;
+			}
+			item.modules.forEach(function (module) {
+				var path = "modules/" + module + "/" + module;
+				modules[module] = path;
+			});
+		};
+
+		this.productInfo.addons.forEach(iterateModules);
+
+		this.productInfo.products.forEach(iterateModules);
+
+		return modules;
+	};
+
+	return ProductModulesExtractor;
 });

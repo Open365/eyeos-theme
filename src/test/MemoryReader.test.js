@@ -45,10 +45,10 @@ suite('MemoryReader', function(){
 		sut = new MemoryReader(itemInfo);
 	});
 
-	suite('#getThemeInfo', function(){
-		test('Should return a json structure with hardcoded theme metadata', function(){
+	suite('#getProductInfo', function(){
+		test('Should return a json structure with hardcoded product metadata', function(){
 			var info;
-			sut.getThemeInfo(itemName, function(err, infoArg) {
+			sut.getProductInfo(itemName, function(err, infoArg) {
 				info = infoArg;
 			});
 			assert.deepEqual(info, itemInfos);

@@ -20,7 +20,7 @@
 define(['platformReader'], function (Reader) {
 	function InfoProvider (settings, reader) {
 		this.reader = reader || new Reader(settings);
-		this.themeInfos = [];
+		this.productInfos = [];
 	}
 
 	InfoProvider.prototype.setInformation = function(name, callback) {
@@ -29,22 +29,22 @@ define(['platformReader'], function (Reader) {
 	};
 
 	InfoProvider.prototype.start = function () {
-		this.__________DONT_USE______________________getThemeInfoFromReader(this.name);
+		this.__________DONT_USE______________________getProductInfoFromReader(this.name);
 	};
 
-	InfoProvider.prototype.gotInfo = function(err, themeInfo) {
-		this.themeInfos.unshift(themeInfo);
-		if (themeInfo.extends) {
-			this.__________DONT_USE______________________getThemeInfoFromReader(themeInfo.extends);
+	InfoProvider.prototype.gotInfo = function(err, productInfo) {
+		this.productInfos.unshift(productInfo);
+		if (productInfo.extends) {
+			this.__________DONT_USE______________________getProductInfoFromReader(productInfo.extends);
 			return;
 		}
 
-		this.callback(err, this.themeInfos);
+		this.callback(err, this.productInfos);
 	};
 
 	//Super highly privte method
-	InfoProvider.prototype.__________DONT_USE______________________getThemeInfoFromReader = function(name) {
-		this.reader.getThemeInfo(name, this.gotInfo.bind(this));
+	InfoProvider.prototype.__________DONT_USE______________________getProductInfoFromReader = function(name) {
+		this.reader.getProductInfo(name, this.gotInfo.bind(this));
 	};
 
 

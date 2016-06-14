@@ -38,7 +38,7 @@ suite("FSReader", function () {
 		callback = function () {};
 
 		settings = {
-			themesPath: __dirname + '/testData/themes/',
+			productsPath: __dirname + '/testData/products/',
 			addonsPath: __dirname + '/testData/addons/'
 		};
 		sut = new FSReader(settings);
@@ -48,8 +48,8 @@ suite("FSReader", function () {
 
 	});
 
-	suite("#getThemeInfo", function () {
-		test("returns the data of the theme", function (done) {
+	suite("#getProductInfo", function () {
+		test("returns the data of the product", function (done) {
 			expectedData = {
 				foo: "bar"
 			};
@@ -57,7 +57,7 @@ suite("FSReader", function () {
 				assert.deepEqual(data, expectedData);
 				done();
 			};
-			sut.getThemeInfo(name, callback);
+			sut.getProductInfo(name, callback);
 		});
 	});
 

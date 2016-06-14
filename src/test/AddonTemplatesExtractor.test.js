@@ -33,10 +33,10 @@ var AddonTemplatesExtractor = requirejs('../lib/AddonTemplatesExtractor');
 
 suite("AddonTemplatesExtractor", function () {
 	var sut;
-	var themeInfo;
+	var productInfo;
 
 	setup(function () {
-		themeInfo = {
+		productInfo = {
 			addons: [{
 				"templates": {
 					"button": ["button.html"],
@@ -49,7 +49,7 @@ suite("AddonTemplatesExtractor", function () {
 				}
 			}]
 		};
-		sut = new AddonTemplatesExtractor(themeInfo);
+		sut = new AddonTemplatesExtractor(productInfo);
 	});
 
 	teardown(function () {

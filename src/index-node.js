@@ -30,6 +30,6 @@ requirejs.config({
 
 
 module.exports = {
-	ThemeFactory: requirejs('./ThemeFactory'),
-	ThemeSassCompiler: requirejs('./ThemeSassCompiler')
+	ProductFactory: requirejs('./ProductFactory'),
+	ProductSassCompiler: requirejs('./ProductSassCompiler')
 }

@@ -29,13 +29,13 @@ requirejs.config({
 	}
 });
 
-var ThemeSassExtractor = requirejs('../lib/ThemeSassExtractor');
+var ProductSassExtractor = requirejs('../lib/ProductSassExtractor');
 
-suite('ThemeSassExtractor', function(){
+suite('ProductSassExtractor', function(){
 	var sut;
 
-	var themeInfo = {
-		themes: [
+	var productInfo = {
+		products: [
 			{
 				name: "default",
 				sass: ["default_variables.scss", "first.scss", "second.scss", "default_mixins.scss"]
@@ -57,7 +57,7 @@ suite('ThemeSassExtractor', function(){
 		]
 	};
 	setup(function(){
-		sut = new ThemeSassExtractor(themeInfo);
+		sut = new ProductSassExtractor(productInfo);
 	});
 
 	suite('#getSass', function(){
@@ -65,17 +65,17 @@ suite('ThemeSassExtractor', function(){
 			var expectedResult = [
 				"addons/applications/sass/_variables.scss",
 				"addons/startmenu/sass/_variables.scss",
-				"themes/default/sass/default_variables.scss",
-				"themes/santfe/sass/_variables.scss",
+				"products/default/sass/default_variables.scss",
+				"products/santfe/sass/_variables.scss",
 				"addons/applications/sass/_mixins.scss",
-				"themes/default/sass/default_mixins.scss",
-				"themes/santfe/sass/_mixins.scss",
+				"products/default/sass/default_mixins.scss",
+				"products/santfe/sass/_mixins.scss",
 				"addons/applications/sass/first.scss",
 				"addons/applications/sass/second.scss",
 				"addons/startmenu/sass/first.scss",
-				"themes/default/sass/first.scss",
-				"themes/default/sass/second.scss",
-				"themes/santfe/sass/first.scss"
+				"products/default/sass/first.scss",
+				"products/default/sass/second.scss",
+				"products/santfe/sass/first.scss"
 			];
 			var sass = sut.getSass();
 			assert.deepEqual(sass, expectedResult);

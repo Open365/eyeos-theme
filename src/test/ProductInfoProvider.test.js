@@ -29,75 +29,75 @@ requirejs.config({
 	}
 });
 
-var InfoProvider = requirejs('../lib/ThemeInfoProvider');
+var InfoProvider = requirejs('../lib/ProductInfoProvider');
 var MemoryReader = requirejs('../lib/readers/MemoryReader');
 
-suite('ThemeInfoProvider', function () {
+suite('ProductInfoProvider', function () {
 	var sut;
 
 	var callbackSpy;
 	var memoryReader;
 
-	var themeName = "fakeTheme", parentThemeName = "parentTheme", childThemeName = 'childTheme';
-	var themeInfos = {};
-	var parentThemeInfo = {
-		name: parentThemeName
+	var productName = "fakeProduct", parentProductName = "parentProduct", childProductName = 'childProduct';
+	var productInfos = {};
+	var parentProductInfo = {
+		name: parentProductName
 	};
-	var themeInfo = {
-		name: themeName,
-		extends: parentThemeName
+	var productInfo = {
+		name: productName,
+		extends: parentProductName
 	};
-	var childTheme = {
-		name: childThemeName,
-		extends: themeName
+	var childProduct = {
+		name: childProductName,
+		extends: productName
 	};
-	themeInfos[themeName] = themeInfo;
-	themeInfos[childThemeName] = childTheme;
-	themeInfos[parentThemeName] = parentThemeInfo;
+	productInfos[productName] = productInfo;
+	productInfos[childProductName] = childProduct;
+	productInfos[parentProductName] = parentProductInfo;
 
-	memoryReader = new MemoryReader(themeInfos);
+	memoryReader = new MemoryReader(productInfos);
 
-	suite('ThemeInfoProvider single theme', function () {
+	suite('ProductInfoProvider single product', function () {
 		setup(function () {
 			callbackSpy = sinon.spy();
 			sut = new InfoProvider({}, memoryReader);
-			sut.setInformation(parentThemeName, callbackSpy);
+			sut.setInformation(parentProductName, callbackSpy);
 		});
 
 		suite('#start', function () {
-			test('The callback should be executed with the expected single theme information', function () {
+			test('The callback should be executed with the expected single product information', function () {
 				sut.start();
-				sinon.assert.calledWithExactly(callbackSpy, false, [parentThemeInfo]);
+				sinon.assert.calledWithExactly(callbackSpy, false, [parentProductInfo]);
 			});
 		});
 	});
 
-	suite('ThemeInfoProvider parent', function () {
+	suite('ProductInfoProvider parent', function () {
 		setup(function () {
 			callbackSpy = sinon.spy();
 			sut = new InfoProvider({}, memoryReader);
-			sut.setInformation(themeName, callbackSpy);
+			sut.setInformation(productName, callbackSpy);
 		});
 
 		suite('#start', function () {
-			test('The callback should be executed with the parent and the ' + themeName + 'information', function () {
+			test('The callback should be executed with the parent and the ' + productName + 'information', function () {
 				sut.start();
-				sinon.assert.calledWithExactly(callbackSpy, false, [parentThemeInfo, themeInfo]);
+				sinon.assert.calledWithExactly(callbackSpy, false, [parentProductInfo, productInfo]);
 			});
 		});
 	});
 
-	suite('ThemeInfoProvider parent and grandparent', function () {
+	suite('ProductInfoProvider parent and grandparent', function () {
 		setup(function () {
 			callbackSpy = sinon.spy();
 			sut = new InfoProvider({}, memoryReader);
-			sut.setInformation(childThemeName, callbackSpy);
+			sut.setInformation(childProductName, callbackSpy);
 		});
 
 		suite('#start', function () {
-			test('The callback should be executed with the grandparent, parent and the ' + childThemeName + 'information', function () {
+			test('The callback should be executed with the grandparent, parent and the ' + childProductName + 'information', function () {
 				sut.start();
-				sinon.assert.calledWithExactly(callbackSpy, false, [parentThemeInfo, themeInfo, childTheme]);
+				sinon.assert.calledWithExactly(callbackSpy, false, [parentProductInfo, productInfo, childProduct]);
 			});
 		});
 	});
