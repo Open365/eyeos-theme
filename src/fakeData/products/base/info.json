@@ -1,13 +1,11 @@
 {
-  "name": "fakeName",
+  "name": "base",
   "defaultAddons": true,
-  "theme": "light",
   "sass": [
     "_variables.scss",
     "main.scss"
   ],
   "addons": {
-    "applications": "full",
     "startMenu": "full"
   },
   "hooks": {

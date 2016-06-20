@@ -17,16 +17,22 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(['./ProductInfoProvider', './AddonsInfoProvider'], function (ProductInfoProvider, AddonsInfoProvider) {
+define([
+	'./ProductInfoProvider',
+	'./AddonsInfoProvider',
+	'./ThemeInfoProvider'
+], function (ProductInfoProvider, AddonsInfoProvider, ThemeInfoProvider) {
 	'use strict';
 
-	function InfoProvider(settings, productInfoProvider, addonsInfoProvider) {
+	function InfoProvider(settings, productInfoProvider, addonsInfoProvider, themeInfoProvider) {
 		this.productInfoProvider = productInfoProvider || new ProductInfoProvider(settings);
 		this.addonsInfoProvider = addonsInfoProvider || new AddonsInfoProvider(settings);
+		this.themeInfoProvider = themeInfoProvider || new ThemeInfoProvider(settings);
 	}
 
-	InfoProvider.prototype.setInformation = function (name, callback) {
+	InfoProvider.prototype.setInformation = function (name, theme, callback) {
 		this.name = name;
+		this.theme = theme;
 		this.callback = callback;
 	};
 
@@ -38,6 +44,12 @@ define(['./ProductInfoProvider', './AddonsInfoProvider'], function (ProductInfoP
 	};
 
 	InfoProvider.prototype.processProductInfo = function (err, info) {
+
+		this.err = err;
+		if (this.err) {
+			this.__gotAllInfo();
+		}
+
 		this.productInfo = info;
 		var addons = {
 			defaultAddons: false
@@ -62,16 +74,33 @@ define(['./ProductInfoProvider', './AddonsInfoProvider'], function (ProductInfoP
 		});
 
 		addons.names = addonNames;
-		this.addonsInfoProvider.setInformation(addons, this.__gotAllInfo.bind(this));
+		var self = this;
+		this.addonsInfoProvider.setInformation(addons, function (err, info) {
+			self.addonsInfo = info;
+			if (self.themeInfo || !self.theme) {
+				self.__gotAllInfo();
+			}
+		});
 		this.addonsInfoProvider.start();
 
+		if (this.theme) {
+			this.themeInfoProvider.setInformation(this.theme, function (err, info) {
+				self.err = err;
+				self.themeInfo = info;
+				if (self.err || self.addonsInfo) {
+					self.__gotAllInfo();
+				}
+			});
+			this.themeInfoProvider.start();
+		}
 
 	};
 
-	InfoProvider.prototype.__gotAllInfo = function (err, info) {
-		this.callback(err, {
+	InfoProvider.prototype.__gotAllInfo = function () {
+		this.callback(this.err, {
 			products: this.productInfo,
-			addons: info
+			addons: this.addonsInfo,
+			theme: this.themeInfo
 		});
 	};
 

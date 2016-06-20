@@ -61,7 +61,7 @@ suite("InfoProvider", function () {
 		addonsStartStub = sinon.stub(addonsInfoProvider, "start");
 
 		sut = new InfoProvider({}, productInfoProvider, addonsInfoProvider);
-		sut.setInformation(name, callback);
+		sut.setInformation(name, null, callback);
 	});
 
 	teardown(function () {
@@ -129,7 +129,8 @@ suite("InfoProvider", function () {
 			sut.processProductInfo(false, productInfo);
 			sinon.assert.calledWithExactly(callback, false, {
 				products: productInfo,
-				addons: addonInfo
+				addons: addonInfo,
+				theme: undefined
 			});
 		});
 

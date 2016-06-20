@@ -30,7 +30,7 @@ requirejs.config({
 });
 
 var ProductFactory = requirejs('../lib/ProductFactory');
-var ProductInfoProvider = requirejs('../lib/ProductInfoProvider');
+var InfoProvider = requirejs('../lib/InfoProvider');
 
 suite('ProductFactory', function () {
 	var sut, callback, name, infoProvider, getInfoStub, info;
@@ -41,7 +41,7 @@ suite('ProductFactory', function () {
 			name: name
 		};
 
-		infoProvider = new ProductInfoProvider();
+		infoProvider = new InfoProvider();
 		getInfoStub = sinon.stub(infoProvider, "start", function () {
 			this.callback(0, info);
 		});
@@ -51,7 +51,7 @@ suite('ProductFactory', function () {
 
 	suite('#get ', function () {
 		test('calls the infoProvider.start', function () {
-			sut.getProduct(name, callback);
+			sut.getProduct(name, null,  callback);
 			getInfoStub.calledWithExactly();
 		});
 
@@ -61,7 +61,7 @@ suite('ProductFactory', function () {
 				resultInfo = product.info;
 			};
 
-			sut.getProduct(name, callback);
+			sut.getProduct(name, null, callback);
 			assert.deepEqual(resultInfo, info);
 		});
 

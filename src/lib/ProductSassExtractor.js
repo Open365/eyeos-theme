@@ -69,6 +69,9 @@ define([], function () {
 
 		this.productInfo.addons.forEach(splitSassFiles('addons'));
 		this.productInfo.products.forEach(splitSassFiles('products'));
+		if (this.productInfo.theme) {
+			splitSassFiles('themes')(this.productInfo.theme);
+		}
 
 		return variables.concat(mixins).concat(sass);
 	};

@@ -41,11 +41,12 @@ requirejs.config({
 requirejs(['ProductFactory'], function (ProductFactory) {
 	var settings = {
 		productsPath: __dirname + '/fakeData/products/',
+		themesPath: __dirname + '/fakeData/themes/',
 		addonsPath: __dirname + '/fakeData/addons/'
 	};
 
 	var productFactory = new ProductFactory(settings);
-	productFactory.getProduct('fakeName', function (err, product) {
+	productFactory.getProduct('fakeName', null, function (err, product) {
 		console.log('sass: ', product.getSass());
 		console.log('hoocks: ', product.getHooks());
 		console.log('modules: ', product.getModules());

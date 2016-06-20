@@ -46,5 +46,12 @@ define(['fs'], function (fs) {
 		});
 	};
 
+	FSReader.prototype.getThemeInfo = function (name, callback) {
+		fs.readFile(this.settings.themesPath + name + '/info.json', options, function (err, data) {
+			if (err) throw err;
+			callback(false, JSON.parse(data));
+		});
+	};
+
 	return FSReader;
 });

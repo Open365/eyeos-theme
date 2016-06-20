@@ -1,0 +1,7 @@
+{
+  "name": "light",
+  "description": "A light product",
+  "sass": [
+    "_variables.scss"
+  ]
+}

@@ -17,20 +17,24 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-define(['./Product', './InfoProvider'], function (Product, InfoProvider) {
-	'use strict';
-
-	function ProductFactory(settings, infoProvider) {
-		this.infoProvider = infoProvider || new InfoProvider(settings);
+define(['platformReader'], function (Reader) {
+	function InfoProvider (settings, reader) {
+		this.reader = reader || new Reader(settings);
 	}
 
-	ProductFactory.prototype.getProduct = function (name, theme, callback) {
-		this.infoProvider.setInformation(name, theme, function (err, info) {
-			callback(0, new Product(info));
-		});
-
-		this.infoProvider.start();
+	InfoProvider.prototype.setInformation = function (themeName, callback) {
+		this.themeName = themeName;
+		this.callback = callback;
 	};
 
-	return ProductFactory;
+	InfoProvider.prototype.start = function () {
+		if (this.themeName) {
+			var self = this;
+			this.reader.getThemeInfo(this.themeName, function (err, data) {
+				self.callback(err, data);
+			});
+		}
+	};
+
+	return InfoProvider;
 });
