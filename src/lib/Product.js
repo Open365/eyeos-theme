@@ -17,31 +17,31 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-var requires = ['./ThemeSassExtractor', './ThemeHooksExtractor', './ThemeModulesExtractor', './AddonTemplatesExtractor'];
-define(requires, function (ThemeSassExtractor, ThemeHooksExtractor, ThemeModulesExtractor, AddonTemplatesExtractor) {
-	function Theme (info, sassExtractor, hooksExtractor, modulesExtractor, addonTemplatesExtractor) {
+var requires = ['./ProductSassExtractor', './ProductHooksExtractor', './ProductModulesExtractor', './AddonTemplatesExtractor'];
+define(requires, function (ProductSassExtractor, ProductHooksExtractor, ProductModulesExtractor, AddonTemplatesExtractor) {
+	function Product (info, sassExtractor, hooksExtractor, modulesExtractor, addonTemplatesExtractor) {
 		this.info = info;
-		this.sassExtractor = sassExtractor || new ThemeSassExtractor(info);
-		this.hooksExtractor = hooksExtractor || new ThemeHooksExtractor(info);
-		this.modulesExtractor = modulesExtractor || new ThemeModulesExtractor(info);
+		this.sassExtractor = sassExtractor || new ProductSassExtractor(info);
+		this.hooksExtractor = hooksExtractor || new ProductHooksExtractor(info);
+		this.modulesExtractor = modulesExtractor || new ProductModulesExtractor(info);
 		this.addonTemplatesExtractor = addonTemplatesExtractor || new AddonTemplatesExtractor(info);
 	}
 
-	Theme.prototype.getSass = function() {
+	Product.prototype.getSass = function() {
 		return this.sassExtractor.getSass();
 	};
 
-	Theme.prototype.getHooks = function() {
+	Product.prototype.getHooks = function() {
 		return this.hooksExtractor.getHooks();
 	};
 
-	Theme.prototype.getModules = function() {
+	Product.prototype.getModules = function() {
 		return this.modulesExtractor.getModules();
 	};
 
-	Theme.prototype.getAddonTemplates = function () {
+	Product.prototype.getAddonTemplates = function () {
 		return this.addonTemplatesExtractor.getAddonTemplates();
 	};
 
-	return Theme;
+	return Product;
 });

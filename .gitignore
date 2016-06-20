@@ -2,3 +2,5 @@ node_modules/
 *.log
 commit.properties
 .idea/
+/build/
+build-browser/

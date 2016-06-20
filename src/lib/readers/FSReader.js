@@ -25,8 +25,8 @@ define(['fs'], function (fs) {
 		this.settings = settings;
 	}
 
-	FSReader.prototype.getThemeInfo = function (name, callback) {
-		fs.readFile(this.settings.themesPath + name + '/info.json', options, function (err, data) {
+	FSReader.prototype.getProductInfo = function (name, callback) {
+		fs.readFile(this.settings.productsPath + name + '/info.json', options, function (err, data) {
 			if (err) throw err;
 			callback(false, JSON.parse(data));
 		});
@@ -41,6 +41,13 @@ define(['fs'], function (fs) {
 
 	FSReader.prototype.getAddonList = function (callback) {
 		fs.readFile(this.settings.addonsPath + 'info.json', options, function (err, data) {
+			if (err) throw err;
+			callback(false, JSON.parse(data));
+		});
+	};
+
+	FSReader.prototype.getThemeInfo = function (name, callback) {
+		fs.readFile(this.settings.themesPath + name + '/info.json', options, function (err, data) {
 			if (err) throw err;
 			callback(false, JSON.parse(data));
 		});

@@ -38,17 +38,18 @@ requirejs.config({
 	}
 });
 
-requirejs(['ThemeFactory'], function (ThemeFactory) {
+requirejs(['ProductFactory'], function (ProductFactory) {
 	var settings = {
+		productsPath: __dirname + '/fakeData/products/',
 		themesPath: __dirname + '/fakeData/themes/',
 		addonsPath: __dirname + '/fakeData/addons/'
 	};
 
-	var themeFactory = new ThemeFactory(settings);
-	themeFactory.getTheme('fakeName', function (err, theme) {
-		console.log('sass: ', theme.getSass());
-		console.log('hoocks: ', theme.getHooks());
-		console.log('modules: ', theme.getModules());
-		console.log('AddonTemplates: ', theme.getAddonTemplates());
+	var productFactory = new ProductFactory(settings);
+	productFactory.getProduct('fakeName', null, function (err, product) {
+		console.log('sass: ', product.getSass());
+		console.log('hoocks: ', product.getHooks());
+		console.log('modules: ', product.getModules());
+		console.log('AddonTemplates: ', product.getAddonTemplates());
 	});
 });

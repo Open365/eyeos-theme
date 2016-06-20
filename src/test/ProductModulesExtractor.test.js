@@ -29,41 +29,37 @@ requirejs.config({
 	}
 });
 
-var ThemeFactory = requirejs('../lib/ThemeFactory');
-var ThemeInfoProvider = requirejs('../lib/ThemeInfoProvider');
+var ProductModulesExtractor = requirejs('../lib/ProductModulesExtractor');
 
-suite('ThemeFactory', function () {
-	var sut, callback, name, infoProvider, getInfoStub, info;
+suite('ProductModulesExtractor', function(){
+	var sut;
 
-	setup(function () {
-		callback = function () {};
-		info = {
-			name: name
-		};
-
-		infoProvider = new ThemeInfoProvider();
-		getInfoStub = sinon.stub(infoProvider, "start", function () {
-			this.callback(0, info);
-		});
-		name = "fakeName";
-		sut = new ThemeFactory({}, infoProvider);
+	var productInfo = {
+		products: [{
+			name: "default",
+			modules: ["defaultProductModule"]
+		}],
+		addons: [{
+			name: "applications",
+			modules: ["applicationsModule"]
+		}, {
+			name: "startmenu",
+			modules: ["startMenu"]
+		}]
+	};
+	setup(function(){
+		sut = new ProductModulesExtractor(productInfo);
 	});
 
-	suite('#get ', function () {
-		test('calls the infoProvider.start', function () {
-			sut.getTheme(name, callback);
-			getInfoStub.calledWithExactly();
-		});
-
-		test('returns an initialized theme with the theme info', function () {
-			var resultInfo;
-			callback = function (err, theme) {
-				resultInfo = theme.info;
+	suite('#getModules', function(){
+		test('Should return a list of modules files with expanded paths ', function(){
+			var expectedModules = {
+				applicationsModule: "modules/applicationsModule/applicationsModule",
+				startMenu: "modules/startMenu/startMenu",
+				defaultProductModule: "modules/defaultProductModule/defaultProductModule"
 			};
-
-			sut.getTheme(name, callback);
-			assert.deepEqual(resultInfo, info);
+			var modules = sut.getModules();
+			assert.deepEqual(modules, expectedModules);
 		});
-
 	});
 });

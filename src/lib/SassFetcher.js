@@ -26,7 +26,7 @@ define([], function () {
 
 	SassFetcher.prototype.fetchSass = function(sassFiles, callback) {
 		var requireSettings = {
-			context: "themeRequire",
+			context: "productRequire",
 			baseUrl: this.settings.baseSassUrl,
 			paths: {}
 		};

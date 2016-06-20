@@ -1,4 +1,4 @@
-Eyeos Theme
+Eyeos Product
 ===========
 
 ## Overview
@@ -38,7 +38,7 @@ Themming library and service
 	"defaultAddons": true,
 	"sass": ["css/variables.sass","css/main.sass"],
 	"hooks": {
-		"themes-dock-main": "templates/main.html",
+		"products-dock-main": "templates/main.html",
 	}
 }
 ```
@@ -53,9 +53,9 @@ Themming library and service
 		"startMenu": "full"
 	},
 	"hooks": {
-		"themes-default-main": "templates/main.html",
-		"themes-default-content": "templates/content.html",
-		"themes-default-topbar": "templates/topbar.html"
+		"products-default-main": "templates/main.html",
+		"products-default-content": "templates/content.html",
+		"products-default-topbar": "templates/topbar.html"
 	}
 }
 ```
@@ -69,8 +69,8 @@ Themming library and service
 		"iconsOnDesktop": "full"
 	},
 	"hooks": {
-		"themes-default-content": "templates/content.html",
-		"themes-default-topbar": "templates/topbar.html",
+		"products-default-content": "templates/content.html",
+		"products-default-topbar": "templates/topbar.html",
 		"addons-applications-icon": "templates/icon.html"
 	}
 }
@@ -81,17 +81,17 @@ Themming library and service
 {
 	"sass": [
 		"addons/applications/sass/variables.sass",
-		"themes/default/css/variables.sass",
-		"themes/santfe/css/variables.sass",
+		"products/default/css/variables.sass",
+		"products/santfe/css/variables.sass",
 		"addons/applications/foo.sass",
-		"themes/default/css/main.sass",
-		"themes/santfe/css/main.sass",
+		"products/default/css/main.sass",
+		"products/santfe/css/main.sass",
 	],
 	"hooks": {
-		"addons-applications-icon": "themes/santfe/templates/icon.html",
-		"themes-default-main": "themes/default/templates/main.html",
-		"themes-default-content": "themes/santfe/templates/content.html",
-		"themes-default-topbar": "themes/santfe/templates/topbar.html",
+		"addons-applications-icon": "products/santfe/templates/icon.html",
+		"products-default-main": "products/default/templates/main.html",
+		"products-default-content": "products/santfe/templates/content.html",
+		"products-default-topbar": "products/santfe/templates/topbar.html",
 
 	},
 	"modules": {
@@ -102,8 +102,8 @@ Themming library and service
 
 ### Next steps
 [InfoParser]   --->
-                        [InfoProvider] ---> [ThemeInfoProvider] ----> themeInfos[]
-                        [InfoProvider] <---- [ThemeInfoProvider]
+                        [InfoProvider] ---> [ProductInfoProvider] ----> productInfos[]
+                        [InfoProvider] <---- [ProductInfoProvider]
                         [InfoProvider] ---> [AddonsInfoProvider] ---> addonsInfo[]
                         [InfoProvider] <--- [AddonsInfoProvider]
                   <---  [InfoProvider]

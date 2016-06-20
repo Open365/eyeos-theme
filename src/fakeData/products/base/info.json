@@ -1,0 +1,16 @@
+{
+  "name": "base",
+  "defaultAddons": true,
+  "sass": [
+    "_variables.scss",
+    "main.scss"
+  ],
+  "addons": {
+    "startMenu": "full"
+  },
+  "hooks": {
+    "products-default-main": "main.html",
+    "products-default-content": "content.html",
+    "products-default-topbar": "topbar.html"
+  }
+}

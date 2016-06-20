@@ -18,12 +18,12 @@
 */
 
 define(['./SassFetcher', './SassCompiler'], function (SassFetcher, SassCompiler) {
-	var ThemeSassCompiler = function(settings, sassFetcher, sassCompiler) {
+	var ProductSassCompiler = function(settings, sassFetcher, sassCompiler) {
 		this.sassFetcher = sassFetcher || new SassFetcher(settings);
 		this.sassCompiler = sassCompiler || new SassCompiler();
 	};
 
-	ThemeSassCompiler.prototype.compile = function(sassFiles, callback) {
+	ProductSassCompiler.prototype.compile = function(sassFiles, callback) {
 		var self = this;
 		this.sassFetcher.fetchSass(sassFiles, function sassFetchedDone(err, sassData) {
 			if (err) {
@@ -36,5 +36,5 @@ define(['./SassFetcher', './SassCompiler'], function (SassFetcher, SassCompiler)
 		});
 	};
 
-	return ThemeSassCompiler;
+	return ProductSassCompiler;
 });

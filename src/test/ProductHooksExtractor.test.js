@@ -29,28 +29,28 @@ requirejs.config({
 	}
 });
 
-var ThemeHooksExtractor = requirejs('../lib/ThemeHooksExtractor');
+var ProductHooksExtractor = requirejs('../lib/ProductHooksExtractor');
 
-suite('ThemeHooksExtractor', function(){
+suite('ProductHooksExtractor', function(){
 	var sut;
 
-	var themeInfo = {
-		themes: [
+	var productInfo = {
+		products: [
 			{
 				name: "default",
 				hooks: {
-					"themes_default_main": "main.html",
-					"themes_default_content": "content.html",
-					"themes_default_topbar": "topbar.html",
+					"products_default_main": "main.html",
+					"products_default_content": "content.html",
+					"products_default_topbar": "topbar.html",
 					"addons_applications_icon": "myOwnApplications.html"
 				}
 			},
 			{
 				name: "santfe",
 				hooks: {
-					"themes_default_main": "main.html",
-					"themes_default_content": "content.html",
-					"themes_default_topbar": "topbar.html",
+					"products_default_main": "main.html",
+					"products_default_content": "content.html",
+					"products_default_topbar": "topbar.html",
 					"addons_startmenu_icon": "icon.html",
 				}
 			}
@@ -71,17 +71,17 @@ suite('ThemeHooksExtractor', function(){
 		]
 	};
 	setup(function(){
-		sut = new ThemeHooksExtractor(themeInfo);
+		sut = new ProductHooksExtractor(productInfo);
 	});
 
 	suite('#getHooks', function(){
 		test('Should return a list of hooks files with expanded paths', function(){
 			var expectedHooks = {
-				addons_applications_icon: 'themes/default/templates/myOwnApplications.html',
-				addons_startmenu_icon: 'themes/santfe/templates/icon.html',
-				themes_default_main: 'themes/santfe/templates/main.html',
-				themes_default_content: 'themes/santfe/templates/content.html',
-				themes_default_topbar: 'themes/santfe/templates/topbar.html'
+				addons_applications_icon: 'products/default/templates/myOwnApplications.html',
+				addons_startmenu_icon: 'products/santfe/templates/icon.html',
+				products_default_main: 'products/santfe/templates/main.html',
+				products_default_content: 'products/santfe/templates/content.html',
+				products_default_topbar: 'products/santfe/templates/topbar.html'
 			};
 			var hooks = sut.getHooks();
 			assert.deepEqual(hooks, expectedHooks);

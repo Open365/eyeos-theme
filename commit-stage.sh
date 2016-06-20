@@ -1,8 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 set -u
-set -x
 
 npm install
-node src/test/index.js
+npm install -g grunt-cli istanbul bower
+# set git user/config if not previously set
+if ! git config user.name > /dev/null
+then
+	git config --global user.name jenkins
+	git config --global user.email jenkins@eyeos.com
+fi
 grunt commit-stage

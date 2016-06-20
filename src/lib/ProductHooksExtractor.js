@@ -19,14 +19,14 @@
 
 define([], function () {
 
-	var ThemeHooksExtractor = function (themeInfo) {
-		this.themeInfo = themeInfo;
+	var ProductHooksExtractor = function (productInfo) {
+		this.productInfo = productInfo;
 	};
 
-	ThemeHooksExtractor.prototype.getHooks = function () {
+	ProductHooksExtractor.prototype.getHooks = function () {
 		var hooks = {};
 
-		this.themeInfo.addons.forEach(function (addon) {
+		this.productInfo.addons.forEach(function (addon) {
 			var keys = Object.keys(addon.hooks);
 			keys.forEach(function (hookfile) {
 				var path = "addons/" + addon.name + "/templates/" + addon.hooks[hookfile]
@@ -34,10 +34,10 @@ define([], function () {
 			});
 		});
 
-		this.themeInfo.themes.forEach(function (theme) {
-			var keys = Object.keys(theme.hooks);
+		this.productInfo.products.forEach(function (product) {
+			var keys = Object.keys(product.hooks);
 			keys.forEach(function (hookfile) {
-				var path = "themes/" + theme.name + "/templates/" + theme.hooks[hookfile]
+				var path = "products/" + product.name + "/templates/" + product.hooks[hookfile];
 				hooks[hookfile] = path;
 			});
 		});
@@ -45,5 +45,5 @@ define([], function () {
 		return hooks;
 	};
 
-	return ThemeHooksExtractor;
+	return ProductHooksExtractor;
 });

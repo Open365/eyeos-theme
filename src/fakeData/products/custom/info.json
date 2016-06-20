@@ -1,0 +1,10 @@
+{
+  "name": "custom",
+  "defaultAddons": true,
+  "sass": [
+    "_variables.scss"
+  ],
+  "addons": {},
+  "extends": "base",
+  "hooks": {}
+}

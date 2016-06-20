@@ -19,8 +19,8 @@
 
 define([], function () {
 
-	var ThemeSassExtractor = function (themeInfo) {
-		this.themeInfo = themeInfo;
+	var ProductSassExtractor = function (productInfo) {
+		this.productInfo = productInfo;
 	};
 
 	function stringEndsWith(haystack, needle) {
@@ -45,7 +45,7 @@ define([], function () {
 		};
 	}
 
-	ThemeSassExtractor.prototype.getSass = function () {
+	ProductSassExtractor.prototype.getSass = function () {
 		var path, concatenatePath;
 		var variables = [];
 		var sass = [];
@@ -67,11 +67,14 @@ define([], function () {
 			}
 		}
 
-		this.themeInfo.addons.forEach(splitSassFiles('addons'));
-		this.themeInfo.themes.forEach(splitSassFiles('themes'));
+		this.productInfo.addons.forEach(splitSassFiles('addons'));
+		this.productInfo.products.forEach(splitSassFiles('products'));
+		if (this.productInfo.theme) {
+			splitSassFiles('themes')(this.productInfo.theme);
+		}
 
 		return variables.concat(mixins).concat(sass);
 	};
 
-	return ThemeSassExtractor;
+	return ProductSassExtractor;
 });

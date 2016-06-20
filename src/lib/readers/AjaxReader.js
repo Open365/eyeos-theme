@@ -24,12 +24,12 @@ define([], function () {
 		this.settings = settings;
 	}
 
-	AjaxReader.prototype.getThemeInfo = function (name, callback) {
+	AjaxReader.prototype.getProductInfo = function (name, callback) {
 		var self = this;
-		$.ajax(this.settings.themesPath + name + '/info.json', options).then(function (data) {
+		$.ajax(this.settings.productsPath + name + '/info.json', options).then(function (data) {
 			callback(false, data);
 		}, function (xhr, textStatus) {
-			console.log(self.settings.themesPath + name + '/info.json' + " AJAX ERROR!!!", textStatus);
+			console.log(self.settings.productsPath + name + '/info.json' + " AJAX ERROR!!!", textStatus);
 		});
 	};
 

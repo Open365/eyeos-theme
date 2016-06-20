@@ -31,9 +31,9 @@ requirejs.config({
 
 var SassFetcher = requirejs('./SassFetcher');
 var SassCompiler = requirejs('./SassCompiler');
-var ThemeSassCompiler = requirejs('./ThemeSassCompiler');
+var ProductSassCompiler = requirejs('./ProductSassCompiler');
 
-suite('ThemeSassCompiler', function(){
+suite('ProductSassCompiler', function(){
 	var sut;
 
 	var files = [
@@ -63,7 +63,7 @@ body { \
 		sassCompilerStub.compile.yields(false, cssData);
 		sassFetcherStub.fetchSass.yields(false, sassData);
 
-		sut = new ThemeSassCompiler(settings, sassFetcher, sassCompiler);
+		sut = new ProductSassCompiler(settings, sassFetcher, sassCompiler);
 	});
 
 	suite('#compile', function(){

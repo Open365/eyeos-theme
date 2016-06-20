@@ -30,11 +30,11 @@ requirejs.config({
 });
 
 var InfoProvider = requirejs('../lib/InfoProvider');
-var ThemeInfoProvider = requirejs('../lib/ThemeInfoProvider');
+var ProductInfoProvider = requirejs('../lib/ProductInfoProvider');
 var AddonsInfoProvider = requirejs('../lib/AddonsInfoProvider');
 
 suite("InfoProvider", function () {
-	var sut, themeInfoProvider, name, callback, addonsInfoProvider, addonInfo;
+	var sut, productInfoProvider, name, callback, addonsInfoProvider, addonInfo;
 	var setInformationStub, startStub, addonsSetInformationStub, addonsStartStub;
 	setup(function () {
 		callback = sinon.spy();
@@ -50,9 +50,9 @@ suite("InfoProvider", function () {
 		}];
 
 
-		themeInfoProvider = new ThemeInfoProvider();
-		setInformationStub = sinon.stub(themeInfoProvider, "setInformation");
-		startStub = sinon.stub(themeInfoProvider, "start");
+		productInfoProvider = new ProductInfoProvider();
+		setInformationStub = sinon.stub(productInfoProvider, "setInformation");
+		startStub = sinon.stub(productInfoProvider, "start");
 
 		addonsInfoProvider = new AddonsInfoProvider();
 		addonsSetInformationStub = sinon.stub(addonsInfoProvider, "setInformation", function (addons, callback) {
@@ -60,8 +60,8 @@ suite("InfoProvider", function () {
 		});
 		addonsStartStub = sinon.stub(addonsInfoProvider, "start");
 
-		sut = new InfoProvider({}, themeInfoProvider, addonsInfoProvider);
-		sut.setInformation(name, callback);
+		sut = new InfoProvider({}, productInfoProvider, addonsInfoProvider);
+		sut.setInformation(name, null, callback);
 	});
 
 	teardown(function () {
@@ -69,22 +69,22 @@ suite("InfoProvider", function () {
 	});
 
 	suite("#start", function () {
-		test("calls themeInfoProvider.setInformation", function () {
+		test("calls productInfoProvider.setInformation", function () {
 			sut.start();
 			sinon.assert.calledWithExactly(setInformationStub, name, sinon.match.func);
 		});
 
-		test("calls themeInfoProvider.start", function () {
+		test("calls productInfoProvider.start", function () {
 			sut.start();
 			sinon.assert.calledWithExactly(startStub);
 		});
 
 	});
 
-	suite("#processThemeInfo", function () {
-		var themeInfo;
+	suite("#processProductInfo", function () {
+		var productInfo;
 		setup(function () {
-			themeInfo = [{
+			productInfo = [{
 				"defaultAddons": true,
 				"addons": {
 					"applications": "full"
@@ -92,17 +92,17 @@ suite("InfoProvider", function () {
 			}];
 		});
 
-		test("calls AddonsInfoProvider.setInformation with one theme", function () {
+		test("calls AddonsInfoProvider.setInformation with one product", function () {
 			var addons = {
 				defaultAddons: true,
 				names: ["applications"]
 			};
-			sut.processThemeInfo(false, themeInfo);
+			sut.processProductInfo(false, productInfo);
 			sinon.assert.calledWithExactly(addonsSetInformationStub, addons, sinon.match.func);
 		});
 
-		test("calls AddonsInfoProvider.setInformation with multiple themes", function () {
-			themeInfo = [{
+		test("calls AddonsInfoProvider.setInformation with multiple products", function () {
+			productInfo = [{
 				"defaultAddons": true,
 				"addons": {
 					"applications": "full"
@@ -116,25 +116,26 @@ suite("InfoProvider", function () {
 				defaultAddons: true,
 				names: ["applications", "foo"]
 			};
-			sut.processThemeInfo(false, themeInfo);
+			sut.processProductInfo(false, productInfo);
 			sinon.assert.calledWithExactly(addonsSetInformationStub, addons, sinon.match.func);
 		});
 
 		test("calls AddonsInfoProvider.start", function () {
-			sut.processThemeInfo(false, themeInfo);
+			sut.processProductInfo(false, productInfo);
 			sinon.assert.calledWithExactly(addonsStartStub);
 		});
 
 		test("AddonsInfoProvider callback calls the class callback", function () {
-			sut.processThemeInfo(false, themeInfo);
+			sut.processProductInfo(false, productInfo);
 			sinon.assert.calledWithExactly(callback, false, {
-				themes: themeInfo,
-				addons: addonInfo
+				products: productInfo,
+				addons: addonInfo,
+				theme: undefined
 			});
 		});
 
-		test("calls AddonsInfoProvider.setInformation with multiple themes without duplications", function () {
-			themeInfo = [{
+		test("calls AddonsInfoProvider.setInformation with multiple products without duplications", function () {
+			productInfo = [{
 				"defaultAddons": true,
 				"addons": {
 					"applications": "full"
@@ -149,7 +150,7 @@ suite("InfoProvider", function () {
 				defaultAddons: true,
 				names: ["applications", "foo"]
 			};
-			sut.processThemeInfo(false, themeInfo);
+			sut.processProductInfo(false, productInfo);
 			sinon.assert.calledWithExactly(addonsSetInformationStub, addons, sinon.match.func);
 		});
 	});

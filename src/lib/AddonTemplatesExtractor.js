@@ -18,13 +18,13 @@
 */
 
 define([], function () {
-	function AddonTemplatesExtractor(themeInfo) {
-		this.themeInfo = themeInfo;
+	function AddonTemplatesExtractor(productInfo) {
+		this.productInfo = productInfo;
 	}
 
 	AddonTemplatesExtractor.prototype.getAddonTemplates = function () {
 		var data = {};
-		this.themeInfo.addons.forEach(function (addon) {
+		this.productInfo.addons.forEach(function (addon) {
 			var templates = addon.templates;
 			for(var key in templates) {
 				if (!data[key]) {
